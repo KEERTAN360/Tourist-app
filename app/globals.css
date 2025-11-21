@@ -1,0 +1,205 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated color tokens to match design brief */
+  --background: #ffffff;
+  --foreground: #475569;
+  --card: #ecfeff;
+  --card-foreground: #164e63;
+  --popover: #ffffff;
+  --popover-foreground: #475569;
+  --primary: #164e63;
+  --primary-foreground: #ffffff;
+  --secondary: #6366f1;
+  --secondary-foreground: #ffffff;
+  --muted: #f8fafc;
+  --muted-foreground: #475569;
+  --accent: #6366f1;
+  --accent-foreground: #ffffff;
+  --destructive: #be123c;
+  --destructive-foreground: #ffffff;
+  --border: #ecfeff;
+  --input: #f8fafc;
+  --ring: rgba(38, 132, 255, 0.5);
+  --chart-1: #6366f1;
+  --chart-2: #ec4899;
+  --chart-3: #be123c;
+  --chart-4: #475569;
+  --chart-5: #164e63;
+  --radius: 0.5rem;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #475569;
+  --sidebar-primary: #164e63;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #6366f1;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #ecfeff;
+  --sidebar-ring: rgba(38, 132, 255, 0.5);
+}
+
+.dark {
+  --background: #1f2937; /* dark gray */
+  --foreground: oklch(0.985 0 0);
+  --card: #1f2937; /* match background */
+  --card-foreground: oklch(0.985 0 0);
+  --popover: #1f2937;
+  --popover-foreground: oklch(0.985 0 0);
+  /* Keep primary/accent the same intent elsewhere; do not modify */
+  --primary: var(--primary);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: #374151; /* slightly lighter gray for surfaces */
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: #374151;
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: #374151;
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: #374151;
+  --input: #374151;
+  --ring: oklch(0.439 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: #111827; /* darker for rails */
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: #374151;
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: #374151;
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  /* Updated font variables to use Inter instead of Geist */
+  --font-sans: var(--font-inter);
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Added 3D placard effects and floating dropdown styles */
+.placard-3d {
+  transform-style: preserve-3d;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(22, 78, 99, 0.1), 0 0 0 1px rgba(99, 102, 241, 0.1);
+}
+
+.placard-3d:hover {
+  transform: translateY(-8px) rotateX(5deg);
+  box-shadow: 0 20px 40px rgba(22, 78, 99, 0.2), 0 0 0 1px rgba(99, 102, 241, 0.2);
+}
+
+.floating-dropdown {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  box-shadow: 0 20px 40px rgba(22, 78, 99, 0.15);
+}
+
+.floating-dropdown.open {
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.3), 0 20px 40px rgba(22, 78, 99, 0.2);
+}
+
+/* Dark mode variant for floating dropdown */
+.dark .floating-dropdown {
+  background: rgba(31, 41, 55, 0.95); /* dark gray */
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+}
+
+.dark .floating-dropdown.open {
+  background: rgba(31, 41, 55, 0.98);
+  box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.3), 0 20px 40px rgba(0, 0, 0, 0.45);
+}
+
+.weather-widget {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(22, 78, 99, 0.1));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Updated gradient classes to match new color scheme */
+.gradient-blue {
+  background: linear-gradient(135deg, #6366f1, #164e63) !important;
+}
+
+.gradient-green {
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+}
+
+.gradient-purple {
+  background: linear-gradient(135deg, #8b5cf6, #6366f1) !important;
+}
+
+.gradient-red {
+  background: linear-gradient(135deg, #ef4444, #be123c) !important;
+}
+
+.gradient-orange {
+  background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+}
+
+/* Famous Tour Guides banner gradient (fixed across themes) */
+.banner-gradient {
+  background: linear-gradient(90deg, #164e63, #6366f1) !important;
+}

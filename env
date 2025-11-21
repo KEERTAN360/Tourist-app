@@ -1,0 +1,3 @@
+# MongoDB Atlas connection string
+# Replace <password> with your actual password
+MONGODB_URI=mongodb+srv://keertanvijay_db_user:Keertan123%23Sih123@cluster0.lqfkqmz.mongodb.net/

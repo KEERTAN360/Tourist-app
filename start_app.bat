@@ -1,0 +1,13 @@
+@echo off
+echo Starting Blockchain-based File Storage System...
+
+echo Installing Python dependencies...
+pip install flask requests numpy
+
+echo Starting Blockchain Peer...
+cd blockchain_temp
+start "Blockchain Peer" python peer.py
+cd ..
+
+echo Starting Next.js Application...
+npm run dev
